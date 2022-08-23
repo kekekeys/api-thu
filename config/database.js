@@ -4,6 +4,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect((err) => {
   if (err) throw err;
 });
-const collection = client.db("classly").collection("uxDesigner");
+const collection = client.db("classly-db").collection("uxDesigners");
  
 module.exports = { collection, ObjectId }
