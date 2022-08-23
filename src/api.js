@@ -16,15 +16,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
-// router.get("/", (req, res) => {
-//     // res.send("User List")
-//     collection.insertOne(req.body, (err, res) => {
-//         if (err) throw err;
-//     })
-//    res.send("1 document inserted.")
-// })
-
 router.get("/", (req, res) => {
     //res.send("User List")
     collection.find().toArray((err, result) => {
