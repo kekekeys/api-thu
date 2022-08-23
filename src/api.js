@@ -17,13 +17,22 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
+// router.get("/", (req, res) => {
+//     // res.send("User List")
+//     collection.insertOne(req.body, (err, res) => {
+//         if (err) throw err;
+//     })
+//    res.send("1 document inserted.")
+// })
+
 router.get("/", (req, res) => {
-    res.send("User List")
-    collection.insertOne(req.body, (err, res) => {
+    //res.send("User List")
+    collection.find().toArray((err, result) => {
         if (err) throw err;
+        res.json(result)
     })
-   res.send("1 document inserted.")
 })
+
 
 router.post("/", (req, res) => {
     // res.send("Create New User")
@@ -40,6 +49,7 @@ router.post("/", (req, res) => {
         const query = {
              _id: ObjectId(req.params.id)
         }
+
         collection.findOne(query, (err, result) => {
              if (err) throw err;
              res.send(result)
@@ -48,8 +58,8 @@ router.post("/", (req, res) => {
      .put((req, res) => {
          //res.send(`Update a User with ID: ${req.params.id}`)
          const query = { _id: ObjectId(req.params.id) }
-         let newvalues = { $set: req.body };
-         collection.updateOne(query, newvalues, (err, result) => {
+         let newValues = { $set: req.body };
+         collection.updateOne(query, newValues, (err, result) => {
              if (err) throw err;
          })
          res.send("1 document updated.")

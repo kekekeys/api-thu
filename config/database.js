@@ -7,3 +7,4 @@ client.connect((err) => {
 const collection = client.db("classly-db").collection("uxDesigners");
  
 module.exports = { collection, ObjectId }
+
